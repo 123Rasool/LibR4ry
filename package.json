@@ -1,0 +1,26 @@
+{
+  "name": "libr4ry",
+  "version": "0.9.1",
+  "description": "A library api with a minimal ui",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "LibR4ry"
+  },
+  "keywords": [
+    "git",
+    "api",
+    "learning",
+    "MapsaHR",
+    "Bootstrap"
+  ],
+  "author": "Dakhm3",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.21",
+    "sqlite": "^4.1.2"
+  }
+}
