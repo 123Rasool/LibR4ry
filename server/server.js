@@ -1,8 +1,7 @@
 const http = require("http");
 const router = require("./router");
-const utils = require("./ServerUtils");
 
-const server = http.createServer(router);
+const server = http.createServer(router.handler);
 
 
 function startServer(port) {

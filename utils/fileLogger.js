@@ -1,9 +1,9 @@
 const fs = require("node:fs");
 
-this.filePath = "";
-this.errorMessage = "";
+let filePath = "";
+let errorMessage = "";
 
-const getDateTime = () => new Date().toUTCString();
+const getDateTime = () => new Date().toUTCString().slice(5, 25);
 
 
 function init(logPath = "logs") {
@@ -30,10 +30,12 @@ const log = function (data) {
 }
 
 const logArray = function (dataArray) {
-    const data = `arrays of data at ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}\n`
-    data = dataArray.reduce((pre, cur, curI) => `${pre}${cur}\n`, data);
+    let data = dataArray.reduce((pre, cur, curI) => `${pre}\t\t${curI}: ${cur}\n`
+        , `${getDateTime()} > arrays of data
+=====================================\n`);
+
     fs.appendFile(filePath,
-        data,
+        data + "=====================================\n",
         "utf-8",
         (err) => {
             if (err) {
@@ -43,7 +45,7 @@ const logArray = function (dataArray) {
 
 }
 
-const getError = function () { return this.errorMessage; }
+const getError = function () { return errorMessage; }
 
 module.exports = {
     init,
