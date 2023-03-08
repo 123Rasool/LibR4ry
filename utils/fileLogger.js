@@ -8,7 +8,8 @@ const getDateTime = () => new Date().toUTCString().slice(5, 25);
 
 function init(logPath = "logs") {
     const initTime = getDateTime();
-    filePath = `${logPath}/log-${initTime}.txt`;
+    // filePath = `${logPath}/log-${initTime}.txt`;
+    filePath = `${logPath}/log.txt`;
     try {
         fs.appendFileSync(filePath, `init logging libr4ry server on ${initTime}\n`);
         return true;

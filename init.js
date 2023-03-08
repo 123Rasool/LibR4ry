@@ -9,5 +9,7 @@ if (fileLogger.init()) {
 
 const server = require("./server/server");
 
-server.startServer(8081);
+globalThis.router = server.startServer(8083);
+
+const controller = require("./controllers/controller") 
 

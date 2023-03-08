@@ -1,0 +1,41 @@
+const sqlite = require("sqlite3").verbose();
+
+const filename = "LibR4ry.sqlite3";
+
+const db = new sqlite.Database(filename, (err) => {
+  if (err) {
+    logger.log(err);
+  } else {
+    logger.log("connected to db...");
+
+    db.serialize(() => {
+      db.run(`CREATE TABLE IF NOT EXISTS User(
+                      userID INTEGER PRIMARY KEY,
+                      username TEXT NOT NULL UNIQUE,
+                      password TEXT 
+      )`);
+
+      db.run(`CREATE TABLE IF NOT EXISTS Book(
+                      bookID INTEGER PRIMARY KEY,
+                      title TEXT NOT NULL,
+                      author INTEGER NOT NULL,
+                      category INTEGER NOT NULL,
+                      renter INTEGER NOT NULL,
+                      availabe INTEGER NOT NULL CHECK (availabe IN (0, 1)),
+                      FOREIGN KEY (category)
+                        REFERENCES Category(categoryID),
+                      FOREIGN KEY (renter)
+                        REFERENCES User(userID)
+      )`);
+      db.run(`CREATE TABLE IF NOT EXISTS Category(
+                      categoryID INTEGER PRIMARY KEY,
+                      title TEXT NOT NULL
+      )`);
+
+
+    });
+    logger.log("Models created...")
+  }
+});
+
+module.exports = db;
